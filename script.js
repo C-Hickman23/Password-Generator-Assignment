@@ -65,7 +65,35 @@ function generatePassword() {
   }
 
   //getting the random length between max and min
-  passLength = (Math.random() * (maxLength - minLength)) + minLength;
+  passLength = Math.floor((Math.random() * (maxLength - minLength)) + minLength);
+  // console.log(passLength); //(test)
 
-  //getting the total availabel characters
+  //getting the total available characters
+  var lowerCaseAlphabet = ["a", "b", "c", "d", "e", "f", "g", "h", "i", "j", "k", "l", "m", "n", "o", "p", "q", "r", "s", "t", "u", "v", "w", "x", "y", "z"];
+  var upperCaseAlphabet = ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"];
+  var numberList = ["1", "2", "3", "4", "5", "6", "7", "8", "9", "0"];
+  var specialCharacters = ["!", "\"", "#", "$", "%", "&", "\'", "(", ")", "*", "+", "-", ",", ".", "/", ":", ";", "<", "=", ">", "?", "@", "[", "\\", "]", "^", "_", "\`", "{", "|", "}", "~"];
+  var passCharacters = [];
+  if(lowCase){
+    passCharacters = passCharacters.concat(lowerCaseAlphabet);
+  }
+  if(upCase){
+    passCharacters = passCharacters.concat(upperCaseAlphabet);
+  }
+  if(numCase){
+    passCharacters = passCharacters.concat(numberList);
+  }
+  if(speCase){
+    passCharacters = passCharacters.concat(specialCharacters);
+  }
+  // console.log(passCharacters); //(test)
+
+  //password generation
+  var password = "";
+  for(var i = 0; i < passLength; i++){
+    password = password + passCharacters[Math.floor(Math.random() * passCharacters.length)];
+  }
+
+  // console.log(password); //(test)
+  return password;
 }
